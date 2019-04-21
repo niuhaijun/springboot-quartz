@@ -8,6 +8,40 @@ spring:
     restart:
       enabled: true
       additional-paths: mapper
+#  quartz:
+#    job-store-type: jdbc
+#    # 相关属性配置、固定前缀org.quartz
+#    # 主要分为scheduler、threadPool、jobStore、dataSource、plugin等部分
+#    properties:
+#      org:
+#        quartz:
+#          scheduler:
+#            instanceName: spring_boot_quartz
+#            instanceId: AUTO
+#            wrapJobExecutionInUserTransaction: false
+#            rmi:
+#              export: false
+#              proxy: false
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 10
+#            threadPriority: 5
+#            threadsInheritContextClassLoaderOfInitializingThread: true
+#          jobStore:
+#            misfireThreshold: 5000
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+#            tablePrefix: QRTZ_
+#            isClustered: true
+#            clusterCheckinInterval: 10000
+#            dataSource: qzDS
+#          dataSource:
+#            qzDS:
+#              driver: com.mysql.cj.jdbc.Driver
+#              URL: jdbc:mysql://127.0.0.1:3306/spring_boot_quartz?useSSL=FALSE&allowMultiQueries=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#              user: root
+#              password: '!@#$1234Abcd'
+#              maxConnections: 10
 
 
 
