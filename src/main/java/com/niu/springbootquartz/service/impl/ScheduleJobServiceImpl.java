@@ -88,8 +88,8 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
 
     JobDataMap jobDataMap = new JobDataMap();
     jobDataMap.put("scheduleJob", jobInfoVO);
-    JobDetail jobDetail = JobBuilder.newJob(ClassUtils.getJobClass(jobInfoVO.getJobName()))
-        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup() + "-jobs")
+    JobDetail jobDetail = JobBuilder.newJob(ClassUtils.getJobClass(jobInfoVO.getJobClass()))
+        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup())
         .withDescription(jobInfoVO.getJobDescription())
         .usingJobData(jobDataMap)
         .storeDurably()
@@ -98,7 +98,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
     CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder
         .cronSchedule(jobInfoVO.getCronExpression());
     trigger = TriggerBuilder.newTrigger()
-        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup() + "-triggers")
+        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup())
         .withDescription(jobInfoVO.getJobDescription())
         .startNow()
         .withSchedule(cronScheduleBuilder)
@@ -119,8 +119,10 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
     CronTrigger cronTrigger = (CronTrigger) scheduler.getTrigger(triggerKey);
     CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder
         .cronSchedule(jobInfoVO.getCronExpression());
-    cronTrigger = cronTrigger.getTriggerBuilder().withIdentity(triggerKey)
-        .withSchedule(cronScheduleBuilder).build();
+    cronTrigger = cronTrigger.getTriggerBuilder()
+        .withIdentity(triggerKey)
+        .withSchedule(cronScheduleBuilder)
+        .build();
     scheduler.rescheduleJob(triggerKey, cronTrigger);
   }
 

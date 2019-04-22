@@ -1,5 +1,7 @@
 package com.niu.springbootquartz.controller.param;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.io.Serializable;
 import lombok.Data;
 
@@ -9,6 +11,7 @@ import lombok.Data;
  * @Version 1.0
  */
 @Data
+@JsonInclude(Include.NON_NULL)
 public class JobInfoVO implements Serializable {
 
   private static final Long serialVersionUID = -12654128415L;

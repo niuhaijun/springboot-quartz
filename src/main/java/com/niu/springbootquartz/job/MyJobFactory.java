@@ -61,7 +61,7 @@ public class MyJobFactory implements InitializingBean {
     JobDataMap jobDataMap = new JobDataMap();
     jobDataMap.put("name", record.getBeanName());
     return JobBuilder.newJob(TemplateJob.class)
-        .withIdentity(record.getJobName(), record.getJobGroup() + "-jobs")
+        .withIdentity(record.getJobName(), record.getJobGroup())
         .withDescription(record.getDescription())
         .usingJobData(jobDataMap)
         .storeDurably()
@@ -74,7 +74,7 @@ public class MyJobFactory implements InitializingBean {
         .withMisfireHandlingInstructionDoNothing();
 
     return TriggerBuilder.newTrigger()
-        .withIdentity(record.getJobName(), record.getJobGroup() + "-triggers")
+        .withIdentity(record.getJobName(), record.getJobGroup())
         .withDescription(record.getDescription())
         .startNow()
         .withSchedule(scheduleBuilder)
