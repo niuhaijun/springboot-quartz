@@ -17,7 +17,7 @@ public class VegasLoggerServiceImpl implements LoggerService {
 
     logger.info("VegasLoggerServiceImpl#printLogger 开始时间: " + LocalDateTime.now());
     try {
-      Thread.sleep(1500L);
+      Thread.sleep(46 * 1000L);
     } catch (InterruptedException e) {
       logger.info("VegasLoggerServiceImpl#printLogger 运行期间发生了中断异常", e);
     }

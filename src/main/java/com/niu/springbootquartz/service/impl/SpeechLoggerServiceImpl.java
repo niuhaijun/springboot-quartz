@@ -17,7 +17,7 @@ public class SpeechLoggerServiceImpl implements LoggerService {
 
     logger.info("SpeechLoggerServiceImpl#printLogger 开始时间: " + LocalDateTime.now());
     try {
-      Thread.sleep(10000L);
+      Thread.sleep(46 * 1000L);
     } catch (InterruptedException e) {
       logger.info("SpeechLoggerServiceImpl#printLogger 运行期间发生了中断异常", e);
     }
