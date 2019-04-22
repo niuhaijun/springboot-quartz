@@ -14,6 +14,7 @@ import java.util.Set;
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
+import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobKey;
@@ -85,16 +86,23 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
       throw new Exception("job already exists!");
     }
 
+    JobDataMap jobDataMap = new JobDataMap();
+    jobDataMap.put("scheduleJob", jobInfoVO);
     JobDetail jobDetail = JobBuilder.newJob(ClassUtils.getJobClass(jobInfoVO.getJobName()))
-        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup())
-        .withDescription(jobInfoVO.getJobDescription()).build();
-    jobDetail.getJobDataMap().put("scheduleJob", jobInfoVO);
+        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup() + "-jobs")
+        .withDescription(jobInfoVO.getJobDescription())
+        .usingJobData(jobDataMap)
+        .storeDurably()
+        .build();
 
     CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder
         .cronSchedule(jobInfoVO.getCronExpression());
     trigger = TriggerBuilder.newTrigger()
-        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup())
-        .withSchedule(cronScheduleBuilder).build();
+        .withIdentity(jobInfoVO.getJobName(), jobInfoVO.getJobGroup() + "-triggers")
+        .withDescription(jobInfoVO.getJobDescription())
+        .startNow()
+        .withSchedule(cronScheduleBuilder)
+        .build();
 
     scheduler.scheduleJob(jobDetail, trigger);
   }
