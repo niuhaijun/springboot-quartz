@@ -1,11 +1,6 @@
 # \u56FA\u5B9A\u524D\u7F00org.quartz
 # \u4E3B\u8981\u5206\u4E3Ascheduler\u3001threadPool\u3001jobStore\u3001plugin\u7B49\u90E8\u5206
 
-
-
-
-
-
 # \u8C03\u5EA6\u5668\u5B9E\u4F8B\u540D\u79F0
 org.quartz.scheduler.instanceName=spring-boot-quartz
 # \u8C03\u5EA6\u5668\u5B9E\u4F8B\u7F16\u53F7\u81EA\u52A8\u751F\u6210
@@ -46,5 +41,5 @@ org.quartz.jobStore.dataSource=qzDS
 org.quartz.dataSource.qzDS.driver=com.mysql.cj.jdbc.Driver
 org.quartz.dataSource.qzDS.URL=jdbc:mysql://127.0.0.1:3306/spring_boot_quartz?useSSL=FALSE&allowMultiQueries=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
 org.quartz.dataSource.qzDS.user=root
-org.quartz.dataSource.qzDS.password=password
+org.quartz.dataSource.qzDS.password=!@#$1234Abcd
 org.quartz.dataSource.qzDS.maxConnections=10
